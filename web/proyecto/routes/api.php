@@ -42,7 +42,7 @@ Route::post("local/delete", [LocalesController::class, "eliminarLocal"]);
 //Semilla.
 Route::get("semilla/get", [SemillasController::class, "getSemillas"]);
 
-Route::post("semilla/post", [SemillasController::class, "crearSemillas"]);
+Route::post("semilla/post", [SemillasController::class, "crearSemilla"]);
 
 Route::post("semilla/delete", [SemillasController::class, "eliminarSemillas"]);
 

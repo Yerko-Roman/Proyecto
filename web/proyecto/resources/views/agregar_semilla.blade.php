@@ -40,5 +40,7 @@
 @endsection
 
 @section('javascript')
+    <script src="{{asset('js/servicios/tipoService.js')}}"></script>
+    <script src="{{asset('js/servicios/semillasService.js')}}"></script>
     <script src="{{asset('js/agregar_semilla.js')}}"></script>
 @endsection

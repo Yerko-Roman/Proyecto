@@ -39,5 +39,6 @@
 @endsection
 
 @section('javascript')
+    <script src="{{asset('js/servicios/localesService.js')}}"></script>
     <script src="{{asset('js/agregar_local.js')}}"></script>
 @endsection

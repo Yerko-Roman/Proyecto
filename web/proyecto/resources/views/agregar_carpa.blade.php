@@ -32,17 +32,19 @@
                         <label for="ancho-num" class="form-label">Ancho</label>
                         <input type="number" min="0" id="ancho-num" class="form-control" required>
                     </div>
+                    
                     <div class="mb-3">
                         <label for="bandeja-check" class="form-label">Bandeja de residuos</label>
                         <div class="form-check form-check-inline">
-                            <input type="radio" name="bandeja-rb" id="bandeja-si" class="form-check-input">
+                            <input type="radio" name="bandeja-rb" id="bandeja-si" class="form-check-input" value="si" checked>
                             <label for="bandeja-si" class="form-check-label">Si</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" name="bandeja-rb" id="bandeja-no" class="form-check-input" checked>
+                            <input type="radio" name="bandeja-rb" id="bandeja-no" class="form-check-input" value="no">
                             <label for="bandeja-no" class="form-check-label">No</label>
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="preciocap-num" class="form-label">Precio</label>
                         <input type="number" min="0" id="preciocap-num" class="form-control" required>
@@ -57,5 +59,6 @@
 @endsection
 
 @section('javascript')
-
+    <script src="{{asset('js/servicios/carpasService.js')}}"></script>
+    <script src="{{asset('js/agregar_carpa.js')}}"></script>
 @endsection
