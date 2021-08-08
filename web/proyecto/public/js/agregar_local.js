@@ -1,6 +1,5 @@
 const cargarRegiones = async()=>{
-    let resultado = await axios.get("api/regiones/get");
-    let regiones = resultado.data;
+    let regiones = await getRegiones();
 
     let regioneselect = document.querySelector("#region-select");
     regiones.forEach(m=> {

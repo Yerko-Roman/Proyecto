@@ -42,5 +42,12 @@ class SemillasController extends Controller
         $semilla->delete();
         return "ok";
     }
+    
+    public function filtrarSemillas(Request $request){
+        $input = $request->all();
+        $filtro = $input["filtro"];
+        $semilla = Semilla::where("tipo", $filtro)->get();
+        return $semilla;
+    }
 
 }

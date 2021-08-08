@@ -25,5 +25,6 @@
 @endsection
 
 @section('javascript')
-
+    <script src="{{asset('js/servicios/carpasService.js')}}"></script>
+    <script src="{{asset('js/ver_carpa.js')}}"></script>
 @endsection

@@ -31,7 +31,7 @@ document.querySelector("#regsem-btn").addEventListener("click", async()=>{
     
     let res = await crearSemilla(semilla);
     
-    await swal.fire("Semilla ingresado", "Semilla ingresado con exito.", "info")
+    await swal.fire("Semilla ingresado", "Semilla ingresada con exito.", "info")
     window.location.href = "ver_semilla";
 
 });

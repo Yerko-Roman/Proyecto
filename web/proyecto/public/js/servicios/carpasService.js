@@ -12,7 +12,7 @@ const crearCarpas = async(carpa)=>{
     return resp.data;
 };
 
-const eliminarCarpas = async(id)=>{
+const eliminarCarpa = async(id)=>{
     try{
         let resp = await axios.post("api/carpa/delete", {id},{
             headers:{

@@ -1,5 +1,10 @@
-const getSemillas = async ()=>{
-    let resp= await axios.get("api/semilla/get");
+const getSemillas = async (filtro ="todos")=>{
+    let resp;
+    if(filtro == "todos"){
+        resp = await axios.get("api/semilla/get");
+    }else{
+        resp = await axios.get(`api/semilla/filtrar?filtro=${filtro}`);
+    }
     return resp.data;
 };
 

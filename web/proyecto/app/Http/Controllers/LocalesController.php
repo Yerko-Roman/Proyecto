@@ -55,4 +55,11 @@ class LocalesController extends Controller
         return "ok";
     }
 
+    public function filtrarLocales(Request $request){
+        $input = $request->all();
+        $filtro = $input["filtro"];
+        $locales = Local::where("region", $filtro)->get();
+        return $locales;
+    }
+
 }

@@ -35,6 +35,8 @@ Route::post("proveedor/delete", [ProveedoresController::class, "eliminarProveedo
 //Locales
 Route::get("local/get", [LocalesController::class, "getLocales"]);
 
+Route::get("local/filtrar", [LocalesController::class, "filtrarLocales"]);
+
 Route::post("local/post", [LocalesController::class, "crearLocal"]);
 
 Route::post("local/delete", [LocalesController::class, "eliminarLocal"]);
@@ -42,9 +44,11 @@ Route::post("local/delete", [LocalesController::class, "eliminarLocal"]);
 //Semilla.
 Route::get("semilla/get", [SemillasController::class, "getSemillas"]);
 
+Route::get("semilla/filtrar", [SemillasController::class, "filtrarSemillas"]);
+
 Route::post("semilla/post", [SemillasController::class, "crearSemilla"]);
 
-Route::post("semilla/delete", [SemillasController::class, "eliminarSemillas"]);
+Route::post("semilla/delete", [SemillasController::class, "eliminarSemilla"]);
 
 //Carpas
 Route::get("carpa/get", [CarpasController::class, "getCarpas"]);
