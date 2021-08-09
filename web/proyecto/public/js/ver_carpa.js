@@ -1,3 +1,43 @@
+const actualizar = async function(){
+    let idCarpa = this.idCarpa;
+    let carpa = await obtenerPorId(idCarpa);
+    let molde = this.parentNode.parentNode;
+    carpa.marca = molde.querySelector(".marcacarpa-txt").value.trim();
+    carpa.tela = molde.querySelector(".tela-txt").value.trim();
+    carpa.cantidad = molde.querySelector(".cap-num").value;
+    carpa.largo = molde.querySelector(".largo-num").value;
+    carpa.alto = molde.querySelector(".alto-num").value;
+    carpa.ancho = molde.querySelector(".ancho-num").value;
+    carpa.bandeja = molde.querySelector(".bandeja-si").checked ? 1: 0;
+    carpa.precio = molde.querySelector(".preciocap-num").value;
+    await actualizarCarpa(carpa);
+    await Swal.close();
+    let carpas = await getCarpas();
+    cargartabla(carpas);
+};
+
+const iniciarActualizacion = async function(){
+    let idCarpa = this.idCarpa;
+    let carpa = await obtenerPorId(idCarpa);
+  
+    let molde = document.querySelector(".molde-actualizar-car").cloneNode(true);
+    molde.querySelector(".marcacarpa-txt").value = carpa.marca;
+    molde.querySelector(".tela-txt").value = carpa.tela;
+    molde.querySelector(".cap-num").value = carpa.cantidad;
+    molde.querySelector(".largo-num").value = carpa.largo;
+    molde.querySelector(".alto-num").value = carpa.alto;
+    molde.querySelector(".ancho-num").value = carpa.ancho;
+    molde.querySelector(".preciocap-num").value = carpa.precio;
+    molde.querySelector(".actualizar-btn").idCarpa = idCarpa;
+    molde.querySelector(".actualizar-btn").addEventListener("click", actualizar);
+    await Swal.fire({
+        title:"Actualizar",
+        html: molde,
+        confirmButtonText: "Cerrar"
+    });
+  
+};
+
 const iniciareliminacion = async function(){
     let id = this.idCarpa;
     let resp = await Swal.fire({title:"Esta seguro?", text:"Esta operacion es irrevercible."
@@ -29,7 +69,7 @@ const cargartabla = (carpa)=>{
         tdcantidad.innerText = carpa[i].cantidad;
 
         let tdmedidas = document.createElement("td");
-        tdmedidas.innerText = carpa[i].largo + "x" + carpa[i].alto + "x" + carpa[i].ancho;
+        tdmedidas.innerText = carpa[i].largo + " x " + carpa[i].alto + " x " + carpa[i].ancho + " cm";
 
         let tdbandeja = document.createElement("td");
         if(carpa[i].bandeja == 0){
@@ -39,7 +79,7 @@ const cargartabla = (carpa)=>{
         }
 
         let tdprecio = document.createElement("td");
-        tdprecio.innerText = carpa[i].precio;
+        tdprecio.innerText = "$" + carpa[i].precio;
 
         let tdaccion1 = document.createElement("td");
         let botonEliminar = document.createElement("button");
@@ -53,7 +93,8 @@ const cargartabla = (carpa)=>{
         let botonActualizar = document.createElement("button");
         botonActualizar.innerText = "Actualizar";
         botonActualizar.classList.add("btn","btn-warning");
-
+        botonActualizar.idCarpa = carpa[i].id;
+        botonActualizar.addEventListener("click", iniciarActualizacion);
         tdaccion2.appendChild(botonActualizar);
 
         tr.appendChild(tdmarca);

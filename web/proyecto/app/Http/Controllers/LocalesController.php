@@ -62,4 +62,24 @@ class LocalesController extends Controller
         return $locales;
     }
 
+    public function obtenerPorId(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $local = Local::findOrFail($id); 
+        return $local;
+    }
+
+    public function actualizarLocal(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $local = Local::findOrFail($id);
+        $local->region = $input["region"];
+        $local->calle = $input["calle"];
+        $local->ciudad = $input["ciudad"];
+        $local->local = $input["local"];
+        $local->telefono = $input["telefono"];
+        $local->save();
+        return $local; 
+    }
+
 }

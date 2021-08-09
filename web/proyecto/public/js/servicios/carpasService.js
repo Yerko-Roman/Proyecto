@@ -24,3 +24,22 @@ const eliminarCarpa = async(id)=>{
         return false;
     }
 };
+
+const actualizarCarpa = async(carpa)=>{
+    try{
+        let resp = await axios.post("api/carpa/actualizar", carpa, {
+            headers:{
+                "Content-Type": "application/json"
+            }
+        });
+        return resp.data;
+    }catch(e){
+        return false;
+    }
+    
+}
+
+const obtenerPorId = async (id)=>{
+    let resp = await axios.get(`api/carpa/findById?id=${id}`);
+    return resp.data;
+}

@@ -30,3 +30,22 @@ const eliminarLocal = async(id)=>{
         return false;
     }
 };
+
+const obtenerPorId = async (id)=>{
+    let resp = await axios.get(`api/local/findById?id=${id}`);
+    return resp.data;
+}
+
+const actualizarLocal = async(local)=>{
+    try{
+        let resp = await axios.post("api/local/actualizar", local, {
+            headers:{
+                "Content-Type": "application/json"
+            }
+        });
+        return resp.data;
+    }catch(e){
+        return false;
+    }
+    
+}

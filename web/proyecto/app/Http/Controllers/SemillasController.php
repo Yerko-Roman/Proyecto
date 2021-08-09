@@ -50,4 +50,24 @@ class SemillasController extends Controller
         return $semilla;
     }
 
+    public function obtenerPorId(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $semilla = Semilla::findOrFail($id); 
+        return $semilla;
+    }
+
+    public function actualizarSemilla(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $semilla = Semilla::findOrFail($id);
+        $semilla->nombre = $input["nombre"];
+        $semilla->tipo = $input["tipo"];
+        $semilla->thc = $input["thc"];
+        $semilla->cbd = $input["cbd"];
+        $semilla->precio = $input["precio"];
+        $semilla->save();
+        return $semilla; 
+    }
+
 }

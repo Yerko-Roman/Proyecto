@@ -36,4 +36,27 @@ class CarpasController extends Controller
         $carpa->delete();
         return "ok";
     }
+
+    public function obtenerPorId(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $carpa = Carpa::findOrFail($id); 
+        return $carpa;
+    }
+
+    public function actualizarCarpa(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $carpa = Carpa::findOrFail($id);
+        $carpa->marca = $input["marca"];
+        $carpa->tela = $input["tela"];
+        $carpa->cantidad = $input["cantidad"];
+        $carpa->largo = $input["largo"];
+        $carpa->alto = $input["alto"];
+        $carpa->ancho = $input["ancho"];
+        $carpa->bandeja = $input["bandeja"];
+        $carpa->precio = $input["precio"];
+        $carpa->save();
+        return $carpa; 
+    }
 }

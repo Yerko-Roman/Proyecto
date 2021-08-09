@@ -29,3 +29,22 @@ const eliminarSemillas = async(id)=>{
         return false;
     }
 };
+
+const obtenerPorId = async (id)=>{
+    let resp = await axios.get(`api/semilla/findById?id=${id}`);
+    return resp.data;
+}
+
+const actualizarSemilla = async(semilla)=>{
+    try{
+        let resp = await axios.post("api/semilla/actualizar", semilla, {
+            headers:{
+                "Content-Type": "application/json"
+            }
+        });
+        return resp.data;
+    }catch(e){
+        return false;
+    }
+    
+}

@@ -1,3 +1,51 @@
+const actualizar = async function(){
+    let idLocal = this.idLocal;
+    let local = await obtenerPorId(idLocal);
+    let molde = this.parentNode.parentNode;
+    local.region = molde.querySelector(".region-select").value.trim();
+    local.calle = molde.querySelector(".calle-txt").value.trim();
+    local.ciudad = molde.querySelector(".ciudad-txt").value.trim();
+    local.local = molde.querySelector(".local-num").value;
+    local.telefono = molde.querySelector(".local-tel").value;
+    await actualizarLocal(local);
+    await Swal.close();
+    let filtro = document.querySelector("#filtro-local").value;
+    let locales = await getLocales(filtro);
+    cargartabla(locales);
+};
+
+const iniciarActualizacion = async function(){
+    let idLocal = this.idLocal;
+    let local = await obtenerPorId(idLocal);
+    
+    let tipo = await getRegiones();
+    let filtrocbx = document.querySelector(".region-select");
+    tipo.forEach(m=>{
+        let option = document.createElement("option");
+        option.innerText = m;
+        option.value = m;
+        filtrocbx.appendChild(option);
+    });
+  
+    let molde = document.querySelector(".molde-actualizar-loc").cloneNode(true);
+
+    molde.querySelector(".region-select").value = local.region;
+    molde.querySelector(".calle-txt").value = local.calle;
+    molde.querySelector(".ciudad-txt").value = local.ciudad;
+    molde.querySelector(".local-num").value = local.local;
+    molde.querySelector(".local-tel").value = local.telefono;
+    molde.querySelector(".actualizar-btn").idLocal = idLocal;
+    molde.querySelector(".actualizar-btn").addEventListener("click", actualizar);
+    await Swal.fire({
+        title:"Actualizar",
+        html: molde,
+        confirmButtonText: "Cerrar"
+    });
+
+    filtrocbx.innerHTML = "";
+  
+};
+
 const cargarRegiones= async ()=>{
     let filtrocbx = document.querySelector("#filtro-local");
     let regiones = await getRegiones();
@@ -55,6 +103,8 @@ const cargartabla = (local)=>{
         let botonActualizar = document.createElement("button");
         botonActualizar.innerText = "Actualizar";
         botonActualizar.classList.add("btn","btn-warning");
+        botonActualizar.idLocal = local[i].id;
+        botonActualizar.addEventListener("click", iniciarActualizacion);
 
         tdaccion2.appendChild(botonActualizar);
 

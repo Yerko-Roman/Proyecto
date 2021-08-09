@@ -24,3 +24,22 @@ const eliminarProveedor = async(id)=>{
         return false;
     }
 };
+
+const actualizarProveedor = async(proveedor)=>{
+    try{
+        let resp = await axios.post("api/proveedor/actualizar", proveedor, {
+            headers:{
+                "Content-Type": "application/json"
+            }
+        });
+        return resp.data;
+    }catch(e){
+        return false;
+    }
+    
+}
+
+const obtenerPorId = async (id)=>{
+    let resp = await axios.get(`api/proveedor/findById?id=${id}`);
+    return resp.data;
+}

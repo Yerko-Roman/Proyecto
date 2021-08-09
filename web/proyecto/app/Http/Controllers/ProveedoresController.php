@@ -34,5 +34,24 @@ class ProveedoresController extends Controller
         return "ok";
     }
 
+    public function obtenerPorId(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $proveedor = Proveedor::findOrFail($id); 
+        return $proveedor;
+    }
+
+    public function actualizarProveedor(Request $request){
+        $input = $request->all();
+        $id = $input["id"];
+        $proveedor = Proveedor::findOrFail($id);
+        $proveedor->nombre = $input["nombre"];
+        $proveedor->rut = $input["rut"];
+        $proveedor->correo = $input["correo"];
+        $proveedor->telefono = $input["telefono"];
+        $proveedor->save();
+        return $proveedor; 
+    }
+
 
 }

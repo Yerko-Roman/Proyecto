@@ -35,6 +35,36 @@
             </table>
         </div>
     </div>
+    <div class="d-none">
+        <div class="row mt-5 molde-actualizar-sem">
+            <div class="mb-3">
+                <label for="nombresem-txt" class="">Nombre Semilla</label>
+                <input type="text" class="form-control nombresem-txt" required>
+            </div>
+            <div class="mb-3">
+                <label for="tipo-select" class="form-label">Tipo Semilla</label>
+                <select class="form-select tipo-select">
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="thc-num" class="form-label">Porcentaje THC</label>
+                <input type="number" step="0.1" min="0" class="form-control thc-num" required>
+            </div>
+            <div class="mb-3">
+                <label for="cbd-num" class="form-label">Porcentaje CBD</label>
+                <input type="number" step="0.1" min="0" class="form-control cbd-num" required>
+            </div>
+            <div class="mb-3">
+                <label for="preciosem-num" class="form-label">Precio</label>
+                <input type="number" min="0" class="form-control preciosem-num" required>
+            </div>
+                
+            <div class="d-grid gap-1">
+                <button  class="btn btn-success actualizar-btn">Actualizar</button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('javascript')

@@ -1,3 +1,37 @@
+const actualizar = async function(){
+    let idProveedor = this.idProveedor;
+    let proveedor = await obtenerPorId(idProveedor);
+    let molde = this.parentNode.parentNode;
+    proveedor.nombre = molde.querySelector(".nomemp-txt").value.trim();
+    proveedor.rut = molde.querySelector(".rut-txt").value.trim();
+    proveedor.correo = molde.querySelector(".prov-email").value.trim();
+    proveedor.telefono = molde.querySelector(".prov-tel").value;
+    await actualizarProveedor(proveedor);
+    await Swal.close();
+    let proveedores = await getProveedores();
+    cargartabla(proveedores);
+};
+
+const iniciarActualizacion = async function(){
+    let idProveedor = this.idProveedor;
+    let proveedor = await obtenerPorId(idProveedor);
+  
+    let molde = document.querySelector(".molde-actualizar-pro").cloneNode(true);
+    molde.querySelector(".nomemp-txt").value = proveedor.nombre;
+    molde.querySelector(".rut-txt").value = proveedor.rut;
+    molde.querySelector(".prov-email").value = proveedor.correo;
+    molde.querySelector(".prov-tel").value = proveedor.telefono;
+    molde.querySelector(".actualizar-btn").idProveedor = idProveedor;
+    molde.querySelector(".actualizar-btn").addEventListener("click", actualizar);
+    await Swal.fire({
+        title:"Actualizar",
+        html: molde,
+        confirmButtonText: "Cerrar"
+    });
+  
+};
+
+
 const iniciareliminacion = async function(){
     let id = this.idProveedor;
     let resp = await Swal.fire({title:"Esta seguro?", text:"Esta operacion es irrevercible."
@@ -42,7 +76,8 @@ const cargartabla = (proveedor)=>{
         let botonActualizar = document.createElement("button");
         botonActualizar.innerText = "Actualizar";
         botonActualizar.classList.add("btn","btn-warning");
-
+        botonActualizar.idProveedor = proveedor[i].id;
+        botonActualizar.addEventListener("click", iniciarActualizacion);
         tdaccion2.appendChild(botonActualizar);
 
         tr.appendChild(tdnombre);

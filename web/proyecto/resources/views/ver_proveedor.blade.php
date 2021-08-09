@@ -20,6 +20,33 @@
             </table>
         </div>
     </div>
+    <div class="d-none">
+        <div class="row mt-5 molde-actualizar-pro">
+            <div class="mb-3">
+                <label for="nomemp-txt" class="form-label">Nombre Empresa</label>
+                <input type="text" class="form-control nomemp-txt" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="rut-txt" class="form-label">Rut</label>
+                <input type="text" class="form-control rut-txt" required>
+            </div>
+                
+            <div class="mb-3">
+                <label for="prov-email" class="form-label">Correo</label>
+                <input type="email" class="form-control prov-email" required>
+            </div>
+                
+            <div class="mb-3">
+                <label for="prov-tel" class="form-label">Telefono</label>
+                <input type="tel" class="form-control prov-tel" required>
+            </div>
+                
+            <div class="d-grid gap-1">
+                <button  class="btn btn-success actualizar-btn">Actualizar</button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('javascript')
